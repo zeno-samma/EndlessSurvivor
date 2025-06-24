@@ -295,9 +295,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3875172121098978626, guid: 46b8f310f9a535a42bf8a9988e919c1b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3875172121098978626, guid: 46b8f310f9a535a42bf8a9988e919c1b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 437178043
+      objectReference: {fileID: 0}
     - target: {fileID: 3998200775812803147, guid: 46b8f310f9a535a42bf8a9988e919c1b, type: 3}
       propertyPath: m_Name
       value: Enemy_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998200775812803147, guid: 46b8f310f9a535a42bf8a9988e919c1b, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8839177071304156610, guid: 46b8f310f9a535a42bf8a9988e919c1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -395,6 +407,18 @@ PrefabInstance:
     - target: {fileID: 5905452222306951888, guid: ec4c20bb972fc2441a20a3c7ef22b024, type: 3}
       propertyPath: m_Name
       value: NinjaGreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779575219517056321, guid: ec4c20bb972fc2441a20a3c7ef22b024, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779575219517056321, guid: ec4c20bb972fc2441a20a3c7ef22b024, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779575219517056321, guid: ec4c20bb972fc2441a20a3c7ef22b024, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
