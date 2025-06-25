@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 8841932234022470736}
   - component: {fileID: 6983702599210816025}
   - component: {fileID: 2184888154389889389}
-  m_Layer: 0
+  - component: {fileID: 7730203743455016061}
+  m_Layer: 6
   m_Name: NinjaGreen
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -214,6 +215,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7730203743455016061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905452222306951888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0344777afbed4a4685fd3ca14f54e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorNormal: {fileID: 2800000, guid: 057c726bed05acf4ca6dec4234662bd3, type: 3}
+  cursorShoot: {fileID: 2800000, guid: 7ae8949b974ddac4c94c15989fc58bd9, type: 3}
+  cursorReload: {fileID: 2800000, guid: 42a03390486c9e645a0efd3020141c2a, type: 3}
 --- !u!1 &6233920633526695605
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4717671951489777604}
   - component: {fileID: 5746047199443905447}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: firePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +304,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1885267137
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -312,7 +328,7 @@ GameObject:
   - component: {fileID: 7779575219517056321}
   - component: {fileID: 9193304446304088981}
   - component: {fileID: 3317589934123037997}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +345,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.154, z: 0}
-  m_LocalScale: {x: 1.7601, y: 1.7601, z: 1.7601}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4717671951489777604}
@@ -377,7 +393,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -516384565
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -6454969007074664543, guid: 5778c3169fcadc04698d16fe106e1377, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -402,3 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb844175eea5e042968f72640163659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefabs: {fileID: 562255894656378738, guid: 672363e90e2164345af9fceed1580142, type: 3}
+  firePos: {fileID: 4717671951489777604}
+  shotDelay: 0.15
+  maxAmo: 24
+  currentAmo: 0

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -12,7 +13,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
@@ -39,6 +40,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 731812183
+    locked: 0
+  - name: Grass
+    uniqueID: 2635335153
+    locked: 0
+  - name: Rock
+    uniqueID: 2385093601
+    locked: 0
+  - name: Trees
+    uniqueID: 1390671269
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -48,11 +61,11 @@ TagManager:
   - name: Enemy
     uniqueID: 437178043
     locked: 0
-  - name: Weapon
-    uniqueID: 3778582731
-    locked: 0
   - name: Bullet
     uniqueID: 2409700159
+    locked: 0
+  - name: Weapon
+    uniqueID: 3778582731
     locked: 0
   m_RenderingLayers:
   - Default
