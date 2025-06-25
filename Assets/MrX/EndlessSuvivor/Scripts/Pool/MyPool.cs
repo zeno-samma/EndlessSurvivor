@@ -19,17 +19,14 @@ namespace MrX.EndlessSurvivor
         {
             if (baseObj == null)
             {
-                // Debug.LogError("Base object is null, cannot get from pool.");
                 return null;
             }
             while (stack.Count > 0)
             {
-                // Debug.Log("Kiểm tra và lấy ra");
                 tmp = stack.Pop();//
                 if (tmp != null)
                 {
                     tmp.SetActive(activeValue);
-                    // Debug.Log("Enemy: " + tmp.name);
                     return tmp;
                 }
                 else
@@ -44,7 +41,7 @@ namespace MrX.EndlessSurvivor
         }
         public void AddToPool(GameObject obj)
         {
-            stack.Push(obj);// add the object to the pool
+            stack.Push(obj);
         }
     }
 

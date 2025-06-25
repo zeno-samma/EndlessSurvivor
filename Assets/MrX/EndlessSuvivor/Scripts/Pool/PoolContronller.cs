@@ -54,7 +54,7 @@ namespace MrX.EndlessSurvivor
         private void OnEnable()
         {
             // Đăng ký lắng nghe sự thay đổi trạng thái từ GameManager
-            EventBus.Subscribe<StateUpdatedEvent>(SpawnEnemiesState);
+            EventBus.Subscribe<StateUpdatedEvent>(SpawnEnemiesState); 
         }
         private void OnDisable()
         {
