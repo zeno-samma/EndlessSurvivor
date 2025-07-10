@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MrX.EndlessSurvivor
 {
-    public class Weapon : MonoBehaviour
+    public class WeaponManager : MonoBehaviour
     {
         private Camera mainCam;
         private Vector3 mousePos;
@@ -17,7 +17,10 @@ namespace MrX.EndlessSurvivor
             currentAmo = maxAmo;
             mainCam = Camera.main; // Lấy camera chính của game
         }
-
+        // public bool IsComponentNull()
+        // {
+        //     return m_anim == null;
+        // }
         void Update()
         {
             Shoot();
@@ -50,10 +53,13 @@ namespace MrX.EndlessSurvivor
         }
         void Shoot()
         {
+            
+            // if (IsComponentNull()) return;
             if (Input.GetMouseButtonDown(0) && currentAmo > 0 && Time.time > nextShot)
             {
                 nextShot = Time.time + shotDelay;
-                Instantiate(bulletPrefabs, firePos.position, firePos.rotation);
+                // Instantiate(bulletPrefabs, firePos.position, firePos.rotation);
+                PoolManager.Ins.GetFromPool("PlayerBullet");
                 currentAmo--;
             }
         }

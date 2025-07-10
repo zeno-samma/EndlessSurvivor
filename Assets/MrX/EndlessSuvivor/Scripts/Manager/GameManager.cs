@@ -56,7 +56,7 @@ namespace MrX.EndlessSurvivor
             switch (newState)
             {
                 case GameState.PREPAIR:
-                    // Debug.Log("code chuẩn bị game");
+                    Debug.Log("code chuẩn bị game");
                     // ... code chuẩn bị game ...
                     // Sau khi chuẩn bị xong, tự động chuyển sang Playing
                     // EventBus.Publish(new InitialUIDataReadyEvent { defScore = Pref.coins });//Phát thông báo lần đầu để ui cập nhật lên màn hình đầu game.
@@ -87,7 +87,7 @@ namespace MrX.EndlessSurvivor
 
             // 4. Phát đi "báo cáo" về trạng thái mới cho các hệ thống khác lắng nghe
             // OnStateChanged?.Invoke(newState);
-            // EventBus.Publish(new StateUpdatedEvent { CurState = newState });//Phát thông báo lần đầu thay đổi state
+            EventBus.Publish(new StateUpdatedEvent { CurState = newState });//Phát thông báo lần đầu thay đổi state
             Debug.Log("Game state changed to: " + newState);
         }
         public void SaveGame()

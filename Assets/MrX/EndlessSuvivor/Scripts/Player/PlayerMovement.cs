@@ -1,23 +1,32 @@
-using System;
-using MRX.DefenseGameV1;
 using UnityEngine;
 
 namespace MrX.EndlessSurvivor
 {
     [RequireComponent(typeof(Rigidbody2D))] // Đảm bảo đối tượng luôn có Rigidbody2D
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour,IsComponentChecking
     {
         public PlayerConfigSO playerConfig; // Biến để chứa file config của người chơi
 
         private Rigidbody2D rb; // Để xử lý vật lý
         private Animator m_anim;
         private Vector2 moveInput; // Để lưu trữ giá trị input (x, y)
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+        public bool IsComponentNull()
+        {
+            return m_anim == null || rb == null || playerConfig == null ;
+        }
         void Awake()
         {
+
             // Lấy component Rigidbody2D gắn trên cùng đối tượng
             rb = GetComponent<Rigidbody2D>();
             m_anim = GetComponent<Animator>();
+            // KIỂM TRA NULL
+            if (IsComponentNull())
+            {
+                Debug.LogError("Lỗi chưa được gán trong Inspector!", this.gameObject);
+                return;
+            }
         }
         void Start()
         {
@@ -39,9 +48,10 @@ namespace MrX.EndlessSurvivor
                 m_anim.SetBool("isMoving", true); // Bật nếu bạn có state Idle
                 m_anim.SetFloat("moveX", moveInput.x);
                 m_anim.SetFloat("moveY", moveInput.y);
-            }else if (moveInput == Vector2.zero)
+            }
+            else if (moveInput == Vector2.zero)
             {
-               m_anim.SetBool("isMoving", false); // Bật nếu bạn có state Idle 
+                m_anim.SetBool("isMoving", false); // Bật nếu bạn có state Idle 
             }
 
         }

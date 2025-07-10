@@ -17,10 +17,12 @@ namespace MrX.EndlessSurvivor
 
         public GameObject Get(bool activeValue)
         {
+
             if (baseObj == null)
             {
                 return null;
             }
+            Debug.Log(stack.Count);
             while (stack.Count > 0)
             {
                 tmp = stack.Pop();//
@@ -34,7 +36,7 @@ namespace MrX.EndlessSurvivor
                     // Debug.LogWarning($"game object with key {baseObj.name} has been destroyed!");
                 }
             }
-            tmp = GameObject.Instantiate(baseObj, new Vector3(6f, -1f, 0f), Quaternion.identity);
+            tmp = GameObject.Instantiate(baseObj, new Vector3(14f, -8f, 0f), Quaternion.identity);
             returnPool = tmp.AddComponent<ReturnToMyPool>();
             returnPool.pool = this;
             return tmp;

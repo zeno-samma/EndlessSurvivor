@@ -5,16 +5,20 @@ using UnityEngine;
 
 namespace MrX.EndlessSurvivor
 {
-    public class PoolController : MonoBehaviour
+    public class PoolManager1 : MonoBehaviour
     {
-        public static PoolController Ins;
-        [Header("Object Pool")]
+        public static PoolManager1 Ins;
         public float m_CD_Nextwave;//Thời gian Cd mỗi vòng wave
-        [SerializeField] private int amount_Pool;
-        [SerializeField] private ObjectPool[] enemyPrefabs;
+        [SerializeField] private int amountEnemyPool;
+        [SerializeField] private int amountBulletPool;
+        [SerializeField] private EnemyPool[] enemyPrefabs;
+        // [SerializeField] private BulletObjectPool[] bulletPrefabs;
         public List<GameObject> activeEnemies = new List<GameObject>();
-        private MyPool[] myPools; // Thêm dòng này
+        private MyPool[] myEnemyPools; // Thêm dòng này
+        // private MyPool[] myBulletPools; // Thêm dòng này
+        public Player player;
         private int i = 0;
+        // private int j = 0;
         // ==============
         [Header("SpawnState")]
         public int m_waveNumber = 0;
@@ -35,30 +39,44 @@ namespace MrX.EndlessSurvivor
         // Start is called before the first frame update
         private void Start()
         {
+            player = GetComponent<Player>();
             // Đặt trạng thái ban đầu khi game bắt đầu
             m_state = SpawnState.COUNTING_DOWN;
-            // =================Khởi tạo Object Pool================
-            myPools = new MyPool[enemyPrefabs.Length]; // Khởi tạo mảng pool
+            // =================Khởi tạo Enemy Pool================
+            myEnemyPools = new MyPool[enemyPrefabs.Length]; // Khởi tạo mảng pool
+            // myBulletPools = new MyPool[bulletPrefabs.Length]; // Khởi tạo mảng pool
             for (int i = 0; i < enemyPrefabs.Length; i++)
             {
-                myPools[i] = new MyPool(enemyPrefabs[i].gameObject);
+                myEnemyPools[i] = new MyPool(enemyPrefabs[i].gameObject);
+                Debug.Log(myEnemyPools);
             }
-            while (i < amount_Pool)// Giới hạn số lượng đối tượng được tạo ra
+            while (i < amountEnemyPool)// Giới hạn số lượng đối tượng được tạo ra
             {
                 int idx = Random.Range(0, enemyPrefabs.Length);
-                myPools[idx].Get(false);
+                myEnemyPools[idx].Get(false);
                 i++;
             }
-            // ===================End Object Pool================
+            // for (int j = 0; i < myBulletPools.Length; i++)
+            // {
+            //     myBulletPools[i] = new MyPool(bulletPrefabs[i].gameObject);
+            //     Debug.Log(myBulletPools);
+            // }
+            // while (j < amountBulletPool)// Giới hạn số lượng đối tượng được tạo ra
+            // {
+            //     int idx = Random.Range(0, bulletPrefabs.Length);
+            //     myBulletPools[idx].Get(false);
+            //     i++;
+            // }
+            // =================Khởi tạo Bullet Pool================
         }
         private void OnEnable()
         {
             // Đăng ký lắng nghe sự thay đổi trạng thái từ GameManager
-            EventBus.Subscribe<StateUpdatedEvent>(SpawnEnemiesState); 
+            // EventBus.Subscribe<StateUpdatedEvent>(SpawnEnemiesState); 
         }
         private void OnDisable()
         {
-            EventBus.Unsubscribe<StateUpdatedEvent>(SpawnEnemiesState);
+            // EventBus.Unsubscribe<StateUpdatedEvent>(SpawnEnemiesState);
             StopAllCoroutines();
         }
 
@@ -106,21 +124,21 @@ namespace MrX.EndlessSurvivor
             // EventBus.Publish(new UpgradePhaseEvent { });//Phát thông báo lần đầu thay đổi state
         }
 
-        public void RegisterEnemy(ObjectPool objectPool)
+        public void RegisterEnemy(EnemyPool EnemyPool)
         {
             // Thêm enemy vào danh sách nếu nó chưa có ở trong
-            if (!activeEnemies.Contains(objectPool.gameObject))
+            if (!activeEnemies.Contains(EnemyPool.gameObject))
             {
-                activeEnemies.Add(objectPool.gameObject);
+                activeEnemies.Add(EnemyPool.gameObject);
             }
         }
 
-        public void UnregisterEnemy(ObjectPool objectPool)
+        public void UnregisterEnemy(EnemyPool EnemyPool)
         {
             // Xóa enemy khỏi danh sách nếu nó có tồn tại
-            if (activeEnemies.Contains(objectPool.gameObject))
+            if (activeEnemies.Contains(EnemyPool.gameObject))
             {
-                activeEnemies.Remove(objectPool.gameObject);
+                activeEnemies.Remove(EnemyPool.gameObject);
             }
         }
         // Hàm này được gọi khi wave trước đã hoàn thành và đến lúc bắt đầu wave mới
@@ -189,7 +207,7 @@ namespace MrX.EndlessSurvivor
             m_state = SpawnState.SPAWNING;
             for (int i = 0; i < count; i++)
             {
-                myPools[level - 1].Get(true);
+                myEnemyPools[level - 1].Get(true);
                 yield return new WaitForSeconds(spawnInterval);
             }
             m_state = SpawnState.WAITING;

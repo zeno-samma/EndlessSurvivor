@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace MrX.EndlessSurvivor
 {
-    public class ObjectPool : MonoBehaviour
+    public class EnemyPool : MonoBehaviour
     {
-        public static ObjectPool Ins;
+        public static EnemyPool Ins;
         public float speed;//Private sẽ không chạy  
         [SerializeField] public int maxHealth;
         private int currentHealth;
@@ -37,21 +37,21 @@ namespace MrX.EndlessSurvivor
                 // m_anim.SetBool(Const.ATTACK_ANIM, false);
             }
             // ===========================================================
-            transform.position = new Vector3(8f, -1f, 0f);
+            transform.position = new Vector3(14f, -8f, 0f);
             // Kiểm tra để chắc chắn EnemyManager tồn tại trước khi đăng ký
-            if (PoolController.Ins != null)
+            if (PoolManager1.Ins != null)
             {
                 // Tự thêm chính mình (this) vào danh sách của Manager
-                PoolController.Ins.RegisterEnemy(this);
+                PoolManager1.Ins.RegisterEnemy(this);
             }
         }
         private void OnDisable()
         {
             // Kiểm tra để chắc chắn EnemyManager vẫn còn tồn tại
-            if (PoolController.Ins != null)
+            if (PoolManager1.Ins != null)
             {
                 // Tự xóa mình khỏi danh sách của Manager
-                PoolController.Ins.UnregisterEnemy(this);
+                PoolManager1.Ins.UnregisterEnemy(this);
             }
         }
         private void Awake()

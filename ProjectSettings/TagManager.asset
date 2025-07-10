@@ -67,5 +67,8 @@ TagManager:
   - name: Weapon
     uniqueID: 3778582731
     locked: 0
+  - name: HpBar
+    uniqueID: 806988463
+    locked: 0
   m_RenderingLayers:
   - Default
