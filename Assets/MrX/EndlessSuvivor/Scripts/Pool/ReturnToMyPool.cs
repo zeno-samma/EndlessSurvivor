@@ -16,7 +16,7 @@ namespace MrX.EndlessSurvivor
         }
         public void OnDisable()
         {
-            // pool.AddToPool(gameObject);
+            pool.AddToPool(gameObject);
         }
     }
 }

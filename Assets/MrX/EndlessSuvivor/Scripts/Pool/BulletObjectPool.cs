@@ -45,11 +45,11 @@ namespace MrX.EndlessSurvivor
         private void Awake()
         {
             Ins = this;
+            m_anim = GetComponent<Animator>();
+            m_rb = GetComponent<Rigidbody2D>();
         }
         private void Start()
         {
-            m_anim = GetComponent<Animator>();
-            m_rb = GetComponent<Rigidbody2D>();
             gameObject.SetActive(false);
         }
 

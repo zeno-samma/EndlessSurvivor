@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3283603472712050064}
   - component: {fileID: 5972512863544035958}
   - component: {fileID: 2292403115881822003}
-  - component: {fileID: 14779685561574661}
+  - component: {fileID: -6492670752816548912}
   m_Layer: 0
   m_Name: GiantBamboo
   m_TagString: Enemy
@@ -187,7 +187,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &14779685561574661
+--- !u!114 &-6492670752816548912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05eed154c71be9e418d134487db7a28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
   maxHealth: 0
   minCoinBonus: 0
   maxCoinBonus: 0

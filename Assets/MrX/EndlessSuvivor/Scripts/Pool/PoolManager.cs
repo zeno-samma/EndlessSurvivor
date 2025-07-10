@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace MrX.EndlessSurvivor
         public class PoolConfig
         {
             public string tag;          // Tên định danh cho pool (ví dụ: "PlayerBullet", "BasicEnemy")
-            public GameObject prefab;   // Prefab của đối tượng
+         public GameObject prefab;   // Prefab của đối tượng
             public int initialSize;    // Số lượng đối tượng muốn tạo sẵn
         }
 
@@ -39,14 +40,14 @@ namespace MrX.EndlessSurvivor
                 // Tạo sẵn các object và để chúng ở trạng thái "tắt"
                 for (int i = 0; i < config.initialSize; i++)
                 {
-                    GameObject objToWarm = newPool.Get(false);
+                    GameObject objToWarm = newPool.Get(false,Vector3.zero);
                 }
                 pools.Add(config.tag, newPool);
                 // Debug.Log($"Pool with tag '{config.tag}' created with {config.initialSize} objects.");
             }
         }
 
-        public GameObject GetFromPool(string tag)
+        public GameObject GetFromPool(string tag, Vector3 position)
         {
             // Kiểm tra xem có pool nào với tag được yêu cầu không
             if (!pools.ContainsKey(tag))
@@ -57,7 +58,7 @@ namespace MrX.EndlessSurvivor
 
             // Nếu có, lấy một object từ pool đó và trả về
             // Tham số 'true' đảm bảo object sẽ được SetActive(true)
-            return pools[tag].Get(true);
+            return pools[tag].Get(true, position);
         }
     }
 }

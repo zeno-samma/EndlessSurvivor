@@ -25484,7 +25484,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 917599140}
-  - component: {fileID: 917599139}
+  - component: {fileID: 917599141}
   m_Layer: 0
   m_Name: SpawnPointsContainer
   m_TagString: Untagged
@@ -25492,23 +25492,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &917599139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 917599138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab39c48db71dd8746b85c3c033902bb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 732763926}
-  - {fileID: 381438468}
-  - {fileID: 377005158}
-  - {fileID: 2033169249}
 --- !u!4 &917599140
 Transform:
   m_ObjectHideFlags: 0
@@ -25528,6 +25511,23 @@ Transform:
   - {fileID: 2033169249}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &917599141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917599138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fba30c50955a9c143a3b732096ac5f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 732763926}
+  - {fileID: 381438468}
+  - {fileID: 377005158}
+  - {fileID: 2033169249}
 --- !u!1 &1221466219
 GameObject:
   m_ObjectHideFlags: 0
@@ -25936,10 +25936,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 123911088189495795, guid: ec4c20bb972fc2441a20a3c7ef22b024, type: 3}
-      propertyPath: playerConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: b45b2f2a7774dd4469c45f3c88e87bbd, type: 2}
     - target: {fileID: 3837013149443479574, guid: ec4c20bb972fc2441a20a3c7ef22b024, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.56
@@ -26388,66 +26384,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1648298689
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1648298690}
-  - component: {fileID: 1648298692}
-  m_Layer: 0
-  m_Name: _PoolManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1648298690
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648298689}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6032416, y: 2.018576, z: -0.025905333}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1648298692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648298689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a73003edb4d6b7b4aa763551f246b0bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolConfigs:
-  - tag: GiantSlimeGreen
-    prefab: {fileID: 330167891605532478, guid: f7eb8a213a6e275458077fe70013ab42, type: 3}
-    initialSize: 10
-  - tag: GiantSlimeBlue
-    prefab: {fileID: 9211823185415390110, guid: fd97004b5d70f094897d51a4a1603686, type: 3}
-    initialSize: 10
-  - tag: GiantFlam
-    prefab: {fileID: 8224240622814872231, guid: effc9be1431ebdc459bb9e61ca9d744a, type: 3}
-    initialSize: 5
-  - tag: GiantSpirit
-    prefab: {fileID: 7759527700764231932, guid: 9847123c9652c8a4ea65e542a07c0696, type: 3}
-    initialSize: 5
-  - tag: PlayerBullet
-    prefab: {fileID: 562255894656378738, guid: 672363e90e2164345af9fceed1580142, type: 3}
-    initialSize: 20
 --- !u!1 &1662646242
 GameObject:
   m_ObjectHideFlags: 0
@@ -26458,6 +26394,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1662646243}
   - component: {fileID: 1662646244}
+  - component: {fileID: 1662646246}
+  - component: {fileID: 1662646245}
   m_Layer: 0
   m_Name: _GameManager
   m_TagString: Untagged
@@ -26494,6 +26432,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScore: 0
   player: {fileID: 2553904535391761076, guid: ec4c20bb972fc2441a20a3c7ef22b024, type: 3}
+--- !u!114 &1662646245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662646242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a73003edb4d6b7b4aa763551f246b0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolConfigs:
+  - tag: GiantSlimeGreen
+    prefab: {fileID: 330167891605532478, guid: f7eb8a213a6e275458077fe70013ab42, type: 3}
+    initialSize: 10
+  - tag: GiantSlimeBlue
+    prefab: {fileID: 9211823185415390110, guid: fd97004b5d70f094897d51a4a1603686, type: 3}
+    initialSize: 10
+  - tag: GiantFlam
+    prefab: {fileID: 8224240622814872231, guid: effc9be1431ebdc459bb9e61ca9d744a, type: 3}
+    initialSize: 5
+  - tag: GiantSpirit
+    prefab: {fileID: 7759527700764231932, guid: 9847123c9652c8a4ea65e542a07c0696, type: 3}
+    initialSize: 5
+  - tag: PlayerBullet
+    prefab: {fileID: 562255894656378738, guid: 672363e90e2164345af9fceed1580142, type: 3}
+    initialSize: 20
+--- !u!114 &1662646246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662646242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d17d21d11af3ac4ea11818cebd03f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeEnemies: []
+  playerTransform: {fileID: 1354492360}
 --- !u!1 &2033169248
 GameObject:
   m_ObjectHideFlags: 0
@@ -26533,7 +26513,6 @@ SceneRoots:
   - {fileID: 1662646243}
   - {fileID: 1394287879}
   - {fileID: 547379680}
-  - {fileID: 1648298690}
   - {fileID: 917599140}
   - {fileID: 1356027825}
   - {fileID: 519420032}

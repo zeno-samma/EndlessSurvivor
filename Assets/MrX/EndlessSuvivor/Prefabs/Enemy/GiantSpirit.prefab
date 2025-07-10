@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4686175208550309172}
   - component: {fileID: 8838831231572784158}
   - component: {fileID: 5734958624176407808}
-  - component: {fileID: 9025092923049066098}
+  - component: {fileID: 5147336689401005737}
   m_Layer: 0
   m_Name: GiantSpirit
   m_TagString: Enemy
@@ -187,7 +187,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &9025092923049066098
+--- !u!114 &5147336689401005737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05eed154c71be9e418d134487db7a28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
   maxHealth: 0
   minCoinBonus: 0
   maxCoinBonus: 0

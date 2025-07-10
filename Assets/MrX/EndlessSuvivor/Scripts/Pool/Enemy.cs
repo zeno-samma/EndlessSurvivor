@@ -1,20 +1,15 @@
 using System;
 using MRX.DefenseGameV1;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace MrX.EndlessSurvivor
 {
-    public class EnemyPool : MonoBehaviour
+    public class Enemy : MonoBehaviour
     {
-        public static EnemyPool Ins;
         public float speed;//Private sẽ không chạy  
         [SerializeField] public int maxHealth;
         private int currentHealth;
-
-        // Event phát đi tỷ lệ máu (0.0 -> 1.0) khi máu thay đổi
-        // public event Action<float> OnHealthChanged;
-        // Event phát đi khi chết
-        // public event Action OnDied;
         public int minCoinBonus;
         public int maxCoinBonus;
         private Rigidbody2D m_rb;
@@ -27,9 +22,6 @@ namespace MrX.EndlessSurvivor
         }
         private void OnEnable()
         {
-            // Debug.Log("Reset kiếp sống" + gameObject.name);
-            // ==================Rất quan trọng reset kiếp sống của một objectpool
-            // Thông báo cho UI cập nhật lại thanh máu đầy
             currentHealth = maxHealth;
             m_canMove = true;
             if (m_anim != null)
@@ -37,26 +29,24 @@ namespace MrX.EndlessSurvivor
                 // m_anim.SetBool(Const.ATTACK_ANIM, false);
             }
             // ===========================================================
-            transform.position = new Vector3(14f, -8f, 0f);
+            float ranX = Random.Range(-14, 14);
+            float ranY = Random.Range(-8, 8);
+            transform.position = new Vector3(ranX, ranY, 0f);
             // Kiểm tra để chắc chắn EnemyManager tồn tại trước khi đăng ký
-            if (PoolManager1.Ins != null)
+            if (EnemyManager.Ins != null)
             {
                 // Tự thêm chính mình (this) vào danh sách của Manager
-                PoolManager1.Ins.RegisterEnemy(this);
+                EnemyManager.Ins.RegisterEnemy(this);
             }
         }
         private void OnDisable()
         {
             // Kiểm tra để chắc chắn EnemyManager vẫn còn tồn tại
-            if (PoolManager1.Ins != null)
+            if (EnemyManager.Ins != null)
             {
                 // Tự xóa mình khỏi danh sách của Manager
-                PoolManager1.Ins.UnregisterEnemy(this);
+                EnemyManager.Ins.UnregisterEnemy(this);
             }
-        }
-        private void Awake()
-        {
-            Ins = this;
         }
         private void Start()
         {
@@ -68,15 +58,17 @@ namespace MrX.EndlessSurvivor
         // Update is called once per frame
         private void Update()
         {
+
+
+        }
+        // Hàm này sẽ được EnemyManager gọi
+        public void Move(Vector3 direction)
+        {
             if (m_canMove)
             {
-                transform.position += Vector3.left * speed * Time.deltaTime; // Di chuyển đối tượng về bên trái
+                // Di chuyển theo hướng được chỉ định bởi Manager
+                transform.position += direction * speed * Time.deltaTime;
             }
-            else if (!m_canMove)
-            {
-
-            }
-
         }
         private void OnCollisionStay2D(Collision2D colTarget)
         {
