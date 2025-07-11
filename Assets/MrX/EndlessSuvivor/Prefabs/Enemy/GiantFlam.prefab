@@ -200,7 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  maxHealth: 0
+  maxHealth: 100
+  currentHealth: 0
   minCoinBonus: 0
   maxCoinBonus: 0
 --- !u!1001 &5929729467684194155

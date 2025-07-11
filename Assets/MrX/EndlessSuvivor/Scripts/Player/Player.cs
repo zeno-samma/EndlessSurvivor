@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace MrX.EndlessSurvivor
@@ -11,6 +12,7 @@ namespace MrX.EndlessSurvivor
         private float damageLevel;
         private float cooldownLevel;
         private int currentGold;
+        private float currentHealth;
 
         // --- Các thuộc tính (Properties) để tính toán chỉ số cuối cùng ---
         public float MaxHealth => playerConfig.initialHealth + (playerConfig.healthBonusPerLevel * healthLevel);
@@ -49,7 +51,40 @@ namespace MrX.EndlessSurvivor
             // GameManager.Ins.SaveGame();//Dùng cho ít lần thay đổi và các thay đổi quan trọng(Qua một chương, hoàn thành được thành tựu)
             // GameManager.Ins.MarkDataAsDirty();//Dùng cho trường hợp nhặt liên tục 10 coins
         }
+        void Start()
+        {
+            currentHealth = MaxHealth;
+        }
+        public void TakeDamage(int damage)
+        {
+            // Đảm bảo máu không âm
+            if (currentHealth < 0)
+            {
+                currentHealth = 0;
+            }
+            // Kiểm tra nếu đã chết
+            if (currentHealth == 0)
+            {
+                // int coinBonus = UnityEngine.Random.Range(minCoinBonus, maxCoinBonus);
+                // EventBus.Publish(new EnemyDiedEvent { dieScore = coinBonus });
+                Debug.Log("Chết");
+                gameObject.SetActive(false);
+                return;
+            }
+            Debug.Log("TakeDamage: " + damage);
+            if (playerConfig.initialHealth <= 0) return; // Nếu đã chết rồi thì không nhận thêm sát thương
+            currentHealth -= damage;
+            Debug.Log($"currentHealth{currentHealth}");
 
+
+            // Tính toán tỷ lệ máu còn lại
+            // float healthPercentage = (float)currentHealth / maxHealth;
+            // Debug.Log("currentHealth " + healthPercentage);
+            // Phát event cho UI
+            // OnHealthChanged?.Invoke(healthPercentage);
+
+
+        }
     }
 }
 

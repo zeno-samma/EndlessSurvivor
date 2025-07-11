@@ -26459,7 +26459,7 @@ MonoBehaviour:
     initialSize: 5
   - tag: PlayerBullet
     prefab: {fileID: 562255894656378738, guid: 672363e90e2164345af9fceed1580142, type: 3}
-    initialSize: 20
+    initialSize: 10
 --- !u!114 &1662646246
 MonoBehaviour:
   m_ObjectHideFlags: 0

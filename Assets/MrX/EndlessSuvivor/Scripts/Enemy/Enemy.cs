@@ -1,7 +1,7 @@
 using System;
+using System.Collections;
 using MRX.DefenseGameV1;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace MrX.EndlessSurvivor
 {
@@ -9,13 +9,15 @@ namespace MrX.EndlessSurvivor
     {
         public float speed;//Private sẽ không chạy  
         [SerializeField] public int maxHealth;
-        private int currentHealth;
+        [SerializeField] private int currentHealth;
         public int minCoinBonus;
         public int maxCoinBonus;
         private Rigidbody2D m_rb;
         private Animator m_anim;
         private bool m_canMove = true;
         private bool isDead;
+        private Coroutine damageCoroutine;
+
         public bool IsComponentNull()
         {
             return m_rb == null;
@@ -70,6 +72,30 @@ namespace MrX.EndlessSurvivor
                 // m_canMove = false;
                 // m_anim.SetBool(Const.ATTACK_ANIM, true);
                 // Debug.Log("Va chạm");
+                // 2. Lấy script "Enemy" từ chính đối tượng vừa va chạm
+                Player player = colTarget.GetComponent<Player>();
+
+                // 3. Kiểm tra để chắc chắn là đã lấy được script (tránh lỗi null)
+                if (player != null)
+                {
+                    // Bắt đầu coroutine và truyền "player" vào,
+                    // đồng thời lưu lại coroutine này vào biến damageCoroutine
+                    damageCoroutine = StartCoroutine(TakeDamage(player));
+                }
+            }
+        }
+        private IEnumerator TakeDamage(Player playerToDamage) // Nhận vào một Player cụ thể
+        {
+            while (true) // Dùng vòng lặp để gây sát thương liên tục
+            {
+                if (playerToDamage != null)
+                {
+                    playerToDamage.TakeDamage(10); // Gây sát thương cho player đã truyền vào
+                    Debug.Log("Tiếp tục gây sát thương!");
+                }
+
+                // Chờ 1 giây rồi lặp lại
+                yield return new WaitForSeconds(1f);
             }
         }
         void OnTriggerExit2D(Collider2D colTarget)
@@ -79,7 +105,14 @@ namespace MrX.EndlessSurvivor
             {
                 // m_canMove = false;
                 // m_anim.SetBool(Const.ATTACK_ANIM, true);
-                // Debug.Log("Va chạm stay");
+                Debug.Log("Thoát va chạm");
+                // Nếu có coroutine đang chạy, hãy dừng nó lại
+                if (damageCoroutine != null)
+                {
+                    StopCoroutine(damageCoroutine);
+                    damageCoroutine = null; // Đặt lại về null để an toàn
+                    Debug.Log("Đã dừng gây sát thương.");
+                }
             }
         }
         /// Trả về tỷ lệ máu hiện tại (từ 0.0 đến 1.0).
@@ -93,9 +126,8 @@ namespace MrX.EndlessSurvivor
         // Phương thức nhận sát thương từ bên ngoài
         public void TakeDamage(int damage)
         {
-            // Debug.Log("TakeDamage: " + damage);
+            Debug.Log("TakeDamage: " + damage);
             if (currentHealth <= 0) return; // Nếu đã chết rồi thì không nhận thêm sát thương
-
             currentHealth -= damage;
             // Debug.Log("currentHealth " + currentHealth);
             // Đảm bảo máu không âm
