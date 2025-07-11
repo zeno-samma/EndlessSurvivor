@@ -25,6 +25,9 @@ namespace MrX.EndlessSurvivor
         {
             Shoot();
             Reload();
+        }
+        void Shoot()
+        {
             // 1. Lấy vị trí chuột trên màn hình
             mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
             if (Input.mousePosition.x < 0 || Input.mousePosition.x > Screen.width || Input.mousePosition.y < 0 || Input.mousePosition.y > Screen.height)
@@ -33,7 +36,7 @@ namespace MrX.EndlessSurvivor
             }
 
             // 2. Tính toán hướng từ vũ khí đến con trỏ chuột
-            Vector3 direction = mousePos - transform.position;
+            Vector3 direction = (mousePos - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             // 3. Xoay vũ khí theo góc đã tính
@@ -50,16 +53,14 @@ namespace MrX.EndlessSurvivor
                 localScale.y = 2f;
             }
             transform.localScale = localScale;
-        }
-        void Shoot()
-        {
-            
             // if (IsComponentNull()) return;
             if (Input.GetMouseButtonDown(0) && currentAmo > 0 && Time.time > nextShot)
             {
                 nextShot = Time.time + shotDelay;
-                // Instantiate(bulletPrefabs, firePos.position, firePos.rotation);
-                PoolManager.Ins.GetFromPool("PlayerBullet", firePos.position);
+                GameObject bulletObj = PoolManager.Ins.GetFromPool("PlayerBullet", firePos.position);
+                Bullet bulletScript = bulletObj.GetComponent<Bullet>();
+                // 4. "Ra lệnh" cho viên đạn bay theo hướng đã tính
+                bulletScript.SetDirection(direction);
                 currentAmo--;
             }
         }

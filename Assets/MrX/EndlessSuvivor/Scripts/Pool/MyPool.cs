@@ -23,7 +23,7 @@ namespace MrX.EndlessSurvivor
             }
             // KHAI BÁO 'tmp' NHƯ MỘT BIẾN CỤC BỘ
             GameObject tmp = null;
-            Debug.Log(stack.Count);
+            // Debug.Log(stack.Count);
             while (stack.Count > 0)
             {
                 tmp = stack.Pop();//
@@ -48,7 +48,7 @@ namespace MrX.EndlessSurvivor
         public void AddToPool(GameObject obj)
         {
             stack.Push(obj);
-            Debug.Log($"[POOL] {baseObj.name} -> Đã thêm vào stack. Tổng stack: {stack.Count}");
+            // Debug.Log($"[POOL] {baseObj.name} -> Đã thêm vào stack. Tổng stack: {stack.Count}");
         }
     }
 
