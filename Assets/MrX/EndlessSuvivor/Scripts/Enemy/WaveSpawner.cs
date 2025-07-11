@@ -21,6 +21,7 @@ namespace MrX.EndlessSurvivor
                 // Lấy Transform của điểm spawn ngẫu nhiên đó
                 Transform randomSpawnPoint = spawnPoints[randomIndex];
                 PoolManager.Ins.GetFromPool("GiantFlam",randomSpawnPoint.position);
+                Debug.Log("Spawn-GiantFlam");
                 yield return new WaitForSeconds(spawnInterval);
             }
             Debug.Log("Đã spawn xong, đang chờ người chơi dọn dẹp...");

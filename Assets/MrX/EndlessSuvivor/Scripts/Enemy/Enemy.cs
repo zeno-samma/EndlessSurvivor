@@ -70,10 +70,10 @@ namespace MrX.EndlessSurvivor
                 transform.position += direction * speed * Time.deltaTime;
             }
         }
-        private void OnCollisionStay2D(Collision2D colTarget)
+        void OnTriggerEnter2D(Collider2D colTarget)
         {
             if (IsComponentNull() || isDead) return;
-            // Debug.Log("colTarget" + colTarget.gameObject.name);
+            Debug.Log("colTarget" + colTarget.gameObject.name);
             if (colTarget.gameObject.CompareTag(Const.PLAYER_TAG) && !isDead)//So sánh va chạm tag player
             {
                 m_canMove = false;
@@ -81,6 +81,10 @@ namespace MrX.EndlessSurvivor
 
             }
         }
+        // private void OnCollisionStay2D(Collision2D colTarget)
+        // {
+
+        // }
         /// Trả về tỷ lệ máu hiện tại (từ 0.0 đến 1.0).
         public float GetHealthPercentage()
         {
