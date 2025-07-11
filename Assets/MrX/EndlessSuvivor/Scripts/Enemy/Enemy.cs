@@ -29,9 +29,9 @@ namespace MrX.EndlessSurvivor
                 // m_anim.SetBool(Const.ATTACK_ANIM, false);
             }
             // ===========================================================
-            float ranX = Random.Range(-14, 14);
-            float ranY = Random.Range(-8, 8);
-            transform.position = new Vector3(ranX, ranY, 0f);
+            // float ranX = Random.Range(-14, 14);
+            // float ranY = Random.Range(-8, 8);
+            // transform.position = new Vector3(ranX, ranY, 0f);
             // Kiểm tra để chắc chắn EnemyManager tồn tại trước khi đăng ký
             if (EnemyManager.Ins != null)
             {
@@ -52,14 +52,6 @@ namespace MrX.EndlessSurvivor
         {
             m_anim = GetComponent<Animator>();
             m_rb = GetComponent<Rigidbody2D>();
-            gameObject.SetActive(false);
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-
-
         }
         // Hàm này sẽ được EnemyManager gọi
         public void Move(Vector3 direction)
@@ -73,18 +65,23 @@ namespace MrX.EndlessSurvivor
         void OnTriggerEnter2D(Collider2D colTarget)
         {
             if (IsComponentNull() || isDead) return;
-            Debug.Log("colTarget" + colTarget.gameObject.name);
             if (colTarget.gameObject.CompareTag(Const.PLAYER_TAG) && !isDead)//So sánh va chạm tag player
             {
-                m_canMove = false;
+                // m_canMove = false;
                 // m_anim.SetBool(Const.ATTACK_ANIM, true);
-
+                // Debug.Log("Va chạm");
             }
         }
-        // private void OnCollisionStay2D(Collision2D colTarget)
-        // {
-
-        // }
+        void OnTriggerExit2D(Collider2D colTarget)
+        {
+            if (IsComponentNull() || isDead) return;
+            if (colTarget.gameObject.CompareTag(Const.PLAYER_TAG) && !isDead)//So sánh va chạm tag player
+            {
+                // m_canMove = false;
+                // m_anim.SetBool(Const.ATTACK_ANIM, true);
+                // Debug.Log("Va chạm stay");
+            }
+        }
         /// Trả về tỷ lệ máu hiện tại (từ 0.0 đến 1.0).
         public float GetHealthPercentage()
         {

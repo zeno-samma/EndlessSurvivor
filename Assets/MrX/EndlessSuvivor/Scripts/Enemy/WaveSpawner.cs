@@ -9,7 +9,7 @@ namespace MrX.EndlessSurvivor
         void Start()
         {
 
-            StartCoroutine(SpawnEnemies(5, 20f));//count, level,Delaytime
+            StartCoroutine(SpawnEnemies(5, 5f));//count, level,Delaytime
         }
         private IEnumerator SpawnEnemies(int count, float spawnInterval)
         {

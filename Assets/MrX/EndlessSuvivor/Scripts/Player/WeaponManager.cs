@@ -59,7 +59,7 @@ namespace MrX.EndlessSurvivor
             {
                 nextShot = Time.time + shotDelay;
                 // Instantiate(bulletPrefabs, firePos.position, firePos.rotation);
-                // PoolManager.Ins.GetFromPool("PlayerBullet");
+                PoolManager.Ins.GetFromPool("PlayerBullet", firePos.position);
                 currentAmo--;
             }
         }
