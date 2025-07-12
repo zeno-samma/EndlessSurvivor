@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MrX.EndlessSurvivor
 {
     public class UIManager : MonoBehaviour
     {
+        [SerializeField] private GameObject HomeGuiPanel;
+        [SerializeField] private GameObject GameGuiPanel;
+        [SerializeField] private Button playBtn;
+
         private void OnEnable()
         {
 
@@ -26,20 +31,18 @@ namespace MrX.EndlessSurvivor
         }// Hàm này được EventBus tự động gọi mỗi khi GameManager thay đổi trạng thái
         private void HandleGameStateChange(StateUpdatedEvent gameState)//1. Nhận thông báo và quản lý các ui
         {
-
-
             // Tắt hết các panel trước để đảm bảo sạch sẽ
             // pauseMenuPanel.SetActive(false);
             // PopUpPanel.SetActive(false);
             // upgradePanel.SetActive(false);
             // gameOverPanel.SetActive(false);
-            // HomeGui.SetActive(false);
+            // HomeGuiPanel.SetActive(false);
 
             // Bật panel tương ứng với trạng thái mới
             switch (gameState.CurState)
             {
                 case GameManager.GameState.PREPAIR:
-                    // HomeGui.SetActive(true);
+                    HomeGuiPanel.SetActive(true);
                     break;
                 case GameManager.GameState.PLAYING:
                     // gameplayHUD.SetActive(true);

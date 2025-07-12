@@ -154,7 +154,7 @@ namespace MrX.EndlessSurvivor
         public void PlayGame()///1.Sau khi ấn nút play
         {
             UpdateGameState(GameState.PLAYING);
-            ActivePlayer();
+            // ActivePlayer();
         }
         public void ActivePlayer()
         {
