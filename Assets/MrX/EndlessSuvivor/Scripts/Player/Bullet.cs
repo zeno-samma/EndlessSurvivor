@@ -43,7 +43,7 @@ namespace MrX.EndlessSurvivor
                 if (enemy != null)
                 {
                     // 4. Gọi thẳng hàm TakeDamage của chính con enemy đó
-                    enemy.TakeDamage(10);
+                    enemy.TakeDamageEnemy(10);
                 }
                 gameObject.SetActive(false);
             }

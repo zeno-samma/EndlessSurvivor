@@ -9,7 +9,7 @@ namespace MrX.EndlessSurvivor
         public static GameManager Ins;
         [SerializeField] private int currentScore;
         private PlayerData playerData;
-        public Player player; // Kéo đối tượng Hero trong Scene vào đây
+        public PlayerHealth playerHealth; // Kéo đối tượng Hero trong Scene vào đây
         private string saveFilePath;
         private bool isDataDirty = false; // << "CỜ BẨN"
         public enum GameState//Giá trị mặc định của enum là đầu tiên.
@@ -96,7 +96,7 @@ namespace MrX.EndlessSurvivor
             // Chỉ thực hiện lưu nếu có thay đổi
             if (!isDataDirty) return;
             Debug.Log("Data was dirty, SAVING GAME...");
-            PlayerData dataToSave = player.GetDataToSave();
+            PlayerData dataToSave = playerHealth.GetDataToSave();
             dataToSave.version = Application.version; // << LƯU PHIÊN BẢN HIỆN TẠI
             dataToSave.gold = currentScore;
 
@@ -126,7 +126,7 @@ namespace MrX.EndlessSurvivor
                 {
                     // Cùng phiên bản, tải dữ liệu bình thường
                     currentScore = playerData.gold;
-                    player.ApplyLoadedData(playerData);
+                    playerHealth.ApplyLoadedData(playerData);
                     Debug.Log("Đã tải trò chơi từ phiên bản: " + playerData.version);
                 }
             }
@@ -134,7 +134,7 @@ namespace MrX.EndlessSurvivor
             {
                 // Không có file save, tạo dữ liệu mới
                 Debug.Log("Không tìm thấy tệp lưu, đang tạo dữ liệu mới.");
-                player.ApplyLoadedData(new PlayerData());
+                playerHealth.ApplyLoadedData(new PlayerData());
                 ResetAndCreateNewData();
             }
         }

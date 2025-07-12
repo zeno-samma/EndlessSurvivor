@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using MRX.DefenseGameV1;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MrX.EndlessSurvivor
 {
     public class Enemy : MonoBehaviour
     {
+        [Header("UI")]
+        public Image healthBarFill; // Kéo Image thanh máu vào đây
         public float speed;//Private sẽ không chạy  
         [SerializeField] public int maxHealth;
         [SerializeField] private int currentHealth;
@@ -25,15 +28,13 @@ namespace MrX.EndlessSurvivor
         private void OnEnable()
         {
             currentHealth = maxHealth;
+            // Cập nhật thanh máu đầy khi mới xuất hiện
+            UpdateHealthBar();
             m_canMove = true;
             if (m_anim != null)
             {
                 // m_anim.SetBool(Const.ATTACK_ANIM, false);
             }
-            // ===========================================================
-            // float ranX = Random.Range(-14, 14);
-            // float ranY = Random.Range(-8, 8);
-            // transform.position = new Vector3(ranX, ranY, 0f);
             // Kiểm tra để chắc chắn EnemyManager tồn tại trước khi đăng ký
             if (EnemyManager.Ins != null)
             {
@@ -41,6 +42,15 @@ namespace MrX.EndlessSurvivor
                 EnemyManager.Ins.RegisterEnemy(this);
             }
         }
+
+        private void UpdateHealthBar()
+        {
+            if (healthBarFill != null)
+            {
+                healthBarFill.fillAmount = (float)currentHealth / maxHealth;
+            }
+        }
+
         private void OnDisable()
         {
             // Kiểm tra để chắc chắn EnemyManager vẫn còn tồn tại
@@ -73,25 +83,26 @@ namespace MrX.EndlessSurvivor
                 // m_anim.SetBool(Const.ATTACK_ANIM, true);
                 // Debug.Log("Va chạm");
                 // 2. Lấy script "Enemy" từ chính đối tượng vừa va chạm
-                Player player = colTarget.GetComponent<Player>();
+                PlayerHealth playerHealth = colTarget.GetComponentInChildren<PlayerHealth>();
 
                 // 3. Kiểm tra để chắc chắn là đã lấy được script (tránh lỗi null)
-                if (player != null)
+                if (playerHealth != null)
                 {
                     // Bắt đầu coroutine và truyền "player" vào,
                     // đồng thời lưu lại coroutine này vào biến damageCoroutine
-                    damageCoroutine = StartCoroutine(TakeDamage(player));
+                    // Debug.Log("playerHealth");
+                    damageCoroutine = StartCoroutine(TakeDamage(playerHealth));
                 }
             }
         }
-        private IEnumerator TakeDamage(Player playerToDamage) // Nhận vào một Player cụ thể
+        private IEnumerator TakeDamage(PlayerHealth playerToDamage) // Gây sát thương cho người chơi
         {
             while (true) // Dùng vòng lặp để gây sát thương liên tục
             {
                 if (playerToDamage != null)
                 {
-                    playerToDamage.TakeDamage(10); // Gây sát thương cho player đã truyền vào
-                    Debug.Log("Tiếp tục gây sát thương!");
+                    playerToDamage.TakeDamagePlayer(10); // Gây sát thương cho player đã truyền vào
+                    Debug.Log("Tiếp tục gây sát thương lên người chơi!");
                 }
 
                 // Chờ 1 giây rồi lặp lại
@@ -124,32 +135,23 @@ namespace MrX.EndlessSurvivor
             return (float)currentHealth / maxHealth;
         }
         // Phương thức nhận sát thương từ bên ngoài
-        public void TakeDamage(int damage)
+        public void TakeDamageEnemy(int damage)//Nhận sát thương từ Bullet
         {
-            Debug.Log("TakeDamage: " + damage);
+            // Debug.Log("TakeDamage: " + damage);
             if (currentHealth <= 0) return; // Nếu đã chết rồi thì không nhận thêm sát thương
             currentHealth -= damage;
             // Debug.Log("currentHealth " + currentHealth);
-            // Đảm bảo máu không âm
-            if (currentHealth < 0)
+            // Kiểm tra nếu đã chết
+            if (currentHealth <= 0)
             {
                 currentHealth = 0;
-            }
-
-            // Tính toán tỷ lệ máu còn lại
-            // float healthPercentage = (float)currentHealth / maxHealth;
-            // Debug.Log("currentHealth " + healthPercentage);
-            // Phát event cho UI
-            // OnHealthChanged?.Invoke(healthPercentage);
-
-            // Kiểm tra nếu đã chết
-            if (currentHealth == 0)
-            {
                 int coinBonus = UnityEngine.Random.Range(minCoinBonus, maxCoinBonus);
                 // EventBus.Publish(new EnemyDiedEvent { dieScore = coinBonus });
                 // Debug.Log("Chết");
                 gameObject.SetActive(false);
             }
+            // Cập nhật UI ngay sau khi máu thay đổi
+            UpdateHealthBar();
         }
     }
 }

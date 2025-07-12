@@ -10,6 +10,10 @@ namespace MrX.EndlessSurvivor
     {
         public GameManager.GameState CurState;
     }
+    public struct PlayerHealthChangedEvent
+    {
+        public float NewHealthPercentage;
+    }
     public struct InitialUIDataReadyEvent
     {
         // public int defHealth;

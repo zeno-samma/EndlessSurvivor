@@ -27001,7 +27001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScore: 0
-  player: {fileID: 2553904535391761076, guid: ec4c20bb972fc2441a20a3c7ef22b024, type: 3}
+  playerHealth: {fileID: 2014737833}
 --- !u!114 &1662646245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27044,6 +27044,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeEnemies: []
   playerTransform: {fileID: 1354492360}
+--- !u!114 &2014737833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1975798051186004156, guid: ec4c20bb972fc2441a20a3c7ef22b024, type: 3}
+  m_PrefabInstance: {fileID: 1376654584}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5104a16cc6ffc8469faeaded835749f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2033169248
 GameObject:
   m_ObjectHideFlags: 0
@@ -27092,7 +27103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2103114199
 RectTransform:
   m_ObjectHideFlags: 0

@@ -5,85 +5,32 @@ namespace MrX.EndlessSurvivor
 {
     public class Player : MonoBehaviour
     {
-        public PlayerConfigSO playerConfig; //
-
-        // Dữ liệu động của người chơi
-        private int healthLevel;
-        private float damageLevel;
-        private float cooldownLevel;
-        private int currentGold;
-        private float currentHealth;
-
-        // --- Các thuộc tính (Properties) để tính toán chỉ số cuối cùng ---
-        public float MaxHealth => playerConfig.initialHealth + (playerConfig.healthBonusPerLevel * healthLevel);
-        public float CurrentDamage => playerConfig.initialDamage + (playerConfig.damageBonusPerLevel * damageLevel);
-        public float CurrentCooldown => playerConfig.initialCooldown - (playerConfig.cooldownReductionPerLevel * cooldownLevel);
-
-        // Hàm này sẽ được GameManager gọi khi load game xong
-        public void ApplyLoadedData(PlayerData data)
+        // Có thể biến nó thành Singleton để dễ truy cập toàn cục
+        public static Player Instance { get; private set; }
+        // "Bộ não" sẽ giữ tham chiếu đến tất cả các bộ phận chuyên môn
+        public PlayerMovement Movement { get; private set; }
+        public PlayerHealth Health { get; private set; }
+        public WeaponManager Weapon { get; private set; }
+        void Awake()
         {
-            healthLevel = data.healthUpgradeLevel;
-            damageLevel = data.damageUpgradeLevel;
-            cooldownLevel = data.cooldownUpgradeLevel;
-            currentGold = data.gold;
+            // Thiết lập Singleton
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
 
-            Debug.Log("Player data applied. Current Damage: " + CurrentDamage);
-        }
-
-        // Hàm này được GameManager gọi trước khi save game
-        public PlayerData GetDataToSave()
-        {
-            PlayerData data = new PlayerData();
-            data.healthUpgradeLevel = healthLevel;
-            data.damageUpgradeLevel = damageLevel;
-            data.cooldownUpgradeLevel = cooldownLevel;
-            data.gold = currentGold;
-            return data;
-        }
-
-        // Ví dụ về việc nâng cấp
-        public void UpgradeHealth()
-        {
-            // (Kiểm tra xem có đủ vàng không...)
-            healthLevel++;
-            // (Trừ vàng...)
-            // << BÁO HIỆU CHO GAMEMANAGER >>
-            // GameManager.Ins.SaveGame();//Dùng cho ít lần thay đổi và các thay đổi quan trọng(Qua một chương, hoàn thành được thành tựu)
-            // GameManager.Ins.MarkDataAsDirty();//Dùng cho trường hợp nhặt liên tục 10 coins
+            // Tự động lấy các "bộ phận" của mình
+            Movement = GetComponent<PlayerMovement>();
+            Health = GetComponent<PlayerHealth>();
+            Weapon = GetComponentInChildren<WeaponManager>(); // Ví dụ nếu Weapon là con
         }
         void Start()
         {
-            currentHealth = MaxHealth;
-        }
-        public void TakeDamage(int damage)
-        {
-            // Đảm bảo máu không âm
-            if (currentHealth < 0)
-            {
-                currentHealth = 0;
-            }
-            // Kiểm tra nếu đã chết
-            if (currentHealth == 0)
-            {
-                // int coinBonus = UnityEngine.Random.Range(minCoinBonus, maxCoinBonus);
-                // EventBus.Publish(new EnemyDiedEvent { dieScore = coinBonus });
-                Debug.Log("Chết");
-                gameObject.SetActive(false);
-                return;
-            }
-            Debug.Log("TakeDamage: " + damage);
-            if (playerConfig.initialHealth <= 0) return; // Nếu đã chết rồi thì không nhận thêm sát thương
-            currentHealth -= damage;
-            Debug.Log($"currentHealth{currentHealth}");
-
-
-            // Tính toán tỷ lệ máu còn lại
-            // float healthPercentage = (float)currentHealth / maxHealth;
-            // Debug.Log("currentHealth " + healthPercentage);
-            // Phát event cho UI
-            // OnHealthChanged?.Invoke(healthPercentage);
-
-
+            
         }
     }
 }
