@@ -102,7 +102,7 @@ namespace MrX.EndlessSurvivor
                 if (playerToDamage != null)
                 {
                     playerToDamage.TakeDamagePlayer(10); // Gây sát thương cho player đã truyền vào
-                    Debug.Log("Tiếp tục gây sát thương lên người chơi!");
+                    // Debug.Log("Tiếp tục gây sát thương lên người chơi!");
                 }
 
                 // Chờ 1 giây rồi lặp lại
@@ -116,13 +116,13 @@ namespace MrX.EndlessSurvivor
             {
                 // m_canMove = false;
                 // m_anim.SetBool(Const.ATTACK_ANIM, true);
-                Debug.Log("Thoát va chạm");
+                // Debug.Log("Thoát va chạm");
                 // Nếu có coroutine đang chạy, hãy dừng nó lại
                 if (damageCoroutine != null)
                 {
                     StopCoroutine(damageCoroutine);
                     damageCoroutine = null; // Đặt lại về null để an toàn
-                    Debug.Log("Đã dừng gây sát thương.");
+                    // Debug.Log("Đã dừng gây sát thương.");
                 }
             }
         }
@@ -146,7 +146,7 @@ namespace MrX.EndlessSurvivor
             {
                 currentHealth = 0;
                 int coinBonus = UnityEngine.Random.Range(minCoinBonus, maxCoinBonus);
-                // EventBus.Publish(new EnemyDiedEvent { dieScore = coinBonus });
+                EventBus.Publish(new EnemyDiedEvent { diecoin = coinBonus });
                 // Debug.Log("Chết");
                 gameObject.SetActive(false);
             }

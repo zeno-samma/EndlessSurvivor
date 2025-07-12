@@ -63,7 +63,7 @@ namespace MrX.EndlessSurvivor
                     break;
                 case GameState.PLAYING:
                     Time.timeScale = 1f;
-                    // EventBus.Publish(new SendToPoolCtrlEvent {});//Phát thông báo lần đầu để ui cập nhật lên màn hình đầu game.
+                    EventBus.Publish(new SendToWaveSpawner{});//Phát thông báo lần đầu để ui cập nhật lên màn hình đầu game.
                     break;
                 case GameState.PAUSE:
                     Time.timeScale = 0f;

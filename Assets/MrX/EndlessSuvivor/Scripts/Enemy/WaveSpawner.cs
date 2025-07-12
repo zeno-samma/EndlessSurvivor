@@ -6,10 +6,22 @@ namespace MrX.EndlessSurvivor
     public class WaveSpawner : MonoBehaviour
     {
         public Transform[] spawnPoints;
-        void Start()
+        private void OnEnable()
         {
 
-            StartCoroutine(SpawnEnemies(1, 5f));//count, level,Delaytime
+            // Đăng ký lắng nghe sự thay đổi trạng thái từ GameManager
+            EventBus.Subscribe<SendToWaveSpawner>(OnSendToWaveSpawner);//Lắng nghe trạng thái game do gamemanager quản lý
+        }
+
+        private void OnDisable()
+        {
+            EventBus.Unsubscribe<SendToWaveSpawner>(OnSendToWaveSpawner);
+        }
+
+        private void OnSendToWaveSpawner(SendToWaveSpawner spawner)
+        {
+           Debug.Log("GameStart...!");
+           StartCoroutine(SpawnEnemies(1, 5f));//count, level,Delaytime  
         }
         private IEnumerator SpawnEnemies(int count, float spawnInterval)
         {

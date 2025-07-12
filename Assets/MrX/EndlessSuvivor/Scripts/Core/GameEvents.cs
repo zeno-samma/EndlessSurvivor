@@ -4,8 +4,6 @@ namespace MrX.EndlessSurvivor
 {
     // Ví dụ một sự kiện không chứa dữ liệu
     public struct GameStartedEvent { }
-    public struct SendToPoolCtrlEvent { }
-        // Sự kiện thông báo từ GameManager
     public struct StateUpdatedEvent
     {
         public GameManager.GameState CurState;
@@ -14,6 +12,14 @@ namespace MrX.EndlessSurvivor
     {
         public float NewHealthPercentage;
     }
+    public struct SendToWaveSpawner { }
+
+    public struct EnemyDiedEvent
+    {
+        public int diecoin;
+    }
+        
+
     public struct InitialUIDataReadyEvent
     {
         // public int defHealth;

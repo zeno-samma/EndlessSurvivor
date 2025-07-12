@@ -5,9 +5,10 @@ namespace MrX.EndlessSurvivor
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private GameObject HomeGuiPanel;
-        [SerializeField] private GameObject GameGuiPanel;
-        [SerializeField] private Button playBtn;
+        [SerializeField] private GameObject HomePanel;
+        [SerializeField] private GameObject GamePanel;
+        [SerializeField] private GameObject GameOverPanel;
+        [SerializeField] private GameObject PausePanel;
 
         private void OnEnable()
         {
@@ -42,10 +43,11 @@ namespace MrX.EndlessSurvivor
             switch (gameState.CurState)
             {
                 case GameManager.GameState.PREPAIR:
-                    HomeGuiPanel.SetActive(true);
+                    HomePanel.SetActive(true);
                     break;
                 case GameManager.GameState.PLAYING:
-                    // gameplayHUD.SetActive(true);
+                    HomePanel.SetActive(false);
+                    GamePanel.SetActive(true);
                     break;
                 case GameManager.GameState.PAUSE:
                     // pauseMenuPanel.SetActive(true);
