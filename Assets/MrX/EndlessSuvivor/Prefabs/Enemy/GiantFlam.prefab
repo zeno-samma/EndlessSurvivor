@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarFill: {fileID: 2426719402727751104}
-  speed: 2
-  maxHealth: 100
+  speed: 3
+  maxHealth: 50
   currentHealth: 0
   minCoinBonus: 1
   maxCoinBonus: 4

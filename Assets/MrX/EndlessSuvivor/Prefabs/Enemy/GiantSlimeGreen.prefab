@@ -199,8 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05eed154c71be9e418d134487db7a28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  maxHealth: 0
+  healthBarFill: {fileID: 192517324617470934}
+  speed: 2
+  maxHealth: 100
+  currentHealth: 0
   minCoinBonus: 0
   maxCoinBonus: 0
 --- !u!1001 &8163940377036319101
@@ -308,6 +310,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 000b3c037c7c829408e62c7a55a0660e, type: 3}
+--- !u!114 &192517324617470934 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8351874897707350699, guid: 000b3c037c7c829408e62c7a55a0660e, type: 3}
+  m_PrefabInstance: {fileID: 8163940377036319101}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2650289443704440306 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6164192802085235855, guid: 000b3c037c7c829408e62c7a55a0660e, type: 3}

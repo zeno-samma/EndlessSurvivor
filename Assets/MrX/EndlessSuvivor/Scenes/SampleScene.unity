@@ -28655,6 +28655,9 @@ MonoBehaviour:
   - tag: GiantSpirit
     prefab: {fileID: 7759527700764231932, guid: 9847123c9652c8a4ea65e542a07c0696, type: 3}
     initialSize: 5
+  - tag: GiantBamboo
+    prefab: {fileID: 1409405638422406248, guid: 7fbb523341f4a044587ca82dbd510d90, type: 3}
+    initialSize: 1
   - tag: PlayerBullet
     prefab: {fileID: 562255894656378738, guid: 672363e90e2164345af9fceed1580142, type: 3}
     initialSize: 10
