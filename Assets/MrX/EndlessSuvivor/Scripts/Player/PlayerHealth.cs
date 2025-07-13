@@ -67,9 +67,9 @@ namespace MrX.EndlessSurvivor
             if (currentHealth == 0)
             {
                 // int coinBonus = UnityEngine.Random.Range(minCoinBonus, maxCoinBonus);
-                // EventBus.Publish(new EnemyDiedEvent { dieScore = coinBonus });
                 Debug.Log("Phát event player chết");
                 // gameObject.SetActive(false);
+                EventBus.Publish(new PlayerDiedEvent {});
                 return;
             }
             // Debug.Log("TakeDamage: " + damage);

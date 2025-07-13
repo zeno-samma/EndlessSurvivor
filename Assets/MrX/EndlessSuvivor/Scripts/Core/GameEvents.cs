@@ -4,6 +4,7 @@ namespace MrX.EndlessSurvivor
 {
     // Ví dụ một sự kiện không chứa dữ liệu
     public struct GameStartedEvent { }
+    public struct PlayerDiedEvent{}
     public struct StateUpdatedEvent
     {
         public GameManager.GameState CurState;

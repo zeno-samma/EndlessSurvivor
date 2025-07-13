@@ -22,6 +22,15 @@ namespace MrX.EndlessSurvivor
             GAMEOVER  // Thua cuộc
         }
         public GameState CurrentState { get; private set; }
+        private void OnEnable()
+        {
+            EventBus.Subscribe<PlayerDiedEvent>(GameOver);
+        }
+
+        private void OnDisable()
+        {
+            EventBus.Unsubscribe<PlayerDiedEvent>(GameOver);
+        }
         void Awake()
         {
             saveFilePath = Path.Combine(Application.persistentDataPath, "savedata.json");
@@ -179,13 +188,10 @@ namespace MrX.EndlessSurvivor
         //     // Thay vì tự phát event, nó "gửi thông báo" đến EventBus
         //     EventBus.Publish(new ScoreUpdatedEvent { newScore = Pref.coins });//Phát thông báo kèm điểm khi tiêu diệt một enemy
         // }
-        // public void GameOver(PlayerDiedEvent e)//
-        // {
-        //     // Debug.Log("Vào đây khi game over");
-        //     // Gửi thông báo game over với dữ liệu điểm cuối cùng
-        //     EventBus.Publish(new GameOverEvent { finalScore = m_score });
-        //     UpdateGameState(GameState.GAMEOVER);
-        // }
+        public void GameOver(PlayerDiedEvent value)//
+        {
+            UpdateGameState(GameState.GAMEOVER);
+        }
     }
 
 }

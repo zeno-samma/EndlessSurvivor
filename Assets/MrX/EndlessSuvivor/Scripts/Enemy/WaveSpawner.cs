@@ -89,7 +89,6 @@ namespace MrX.EndlessSurvivor
                 // Giảm thời gian
                 Debug.Log($"Time: {timer}");
                 timer -= Time.deltaTime;
-
                 yield return null;
             }
 

@@ -33,11 +33,10 @@ namespace MrX.EndlessSurvivor
         private void HandleGameStateChange(StateUpdatedEvent gameState)//1. Nhận thông báo và quản lý các ui
         {
             // Tắt hết các panel trước để đảm bảo sạch sẽ
-            // pauseMenuPanel.SetActive(false);
-            // PopUpPanel.SetActive(false);
-            // upgradePanel.SetActive(false);
-            // gameOverPanel.SetActive(false);
-            // HomeGuiPanel.SetActive(false);
+            HomePanel.SetActive(false);
+            GamePanel.SetActive(false);
+            GameOverPanel.SetActive(false);
+            PausePanel.SetActive(false);
 
             // Bật panel tương ứng với trạng thái mới
             switch (gameState.CurState)
@@ -46,7 +45,6 @@ namespace MrX.EndlessSurvivor
                     HomePanel.SetActive(true);
                     break;
                 case GameManager.GameState.PLAYING:
-                    HomePanel.SetActive(false);
                     GamePanel.SetActive(true);
                     break;
                 case GameManager.GameState.PAUSE:
@@ -58,8 +56,7 @@ namespace MrX.EndlessSurvivor
                     break;
                 case GameManager.GameState.GAMEOVER:
                     // Debug.Log("GAMEOVERUI");
-                    // gameplayHUD.SetActive(true);
-                    // gameOverPanel.SetActive(true);
+                    GameOverPanel.SetActive(true);
                     break;
             }
         }
