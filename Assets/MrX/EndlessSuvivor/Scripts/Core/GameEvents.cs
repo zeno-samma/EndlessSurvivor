@@ -12,8 +12,6 @@ namespace MrX.EndlessSurvivor
     {
         public float NewHealthPercentage;
     }
-    public struct SendToWaveSpawner { }
-
     public struct EnemyDiedEvent
     {
         public int diecoin;

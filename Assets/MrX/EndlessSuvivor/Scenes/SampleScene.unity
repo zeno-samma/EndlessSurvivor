@@ -27150,6 +27150,9 @@ MonoBehaviour:
   - {fileID: 381438468}
   - {fileID: 377005158}
   - {fileID: 2033169249}
+  m_waveNumber: 0
+  m_CD_Nextwave: 5
+  m_state: 0
 --- !u!1 &1019047451
 GameObject:
   m_ObjectHideFlags: 0

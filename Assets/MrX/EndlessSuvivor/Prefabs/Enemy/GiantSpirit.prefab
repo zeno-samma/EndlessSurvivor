@@ -203,8 +203,8 @@ MonoBehaviour:
   speed: 3
   maxHealth: 50
   currentHealth: 0
-  minCoinBonus: 0
-  maxCoinBonus: 0
+  minCoinBonus: 1
+  maxCoinBonus: 4
 --- !u!1001 &6144694891212164533
 PrefabInstance:
   m_ObjectHideFlags: 0
